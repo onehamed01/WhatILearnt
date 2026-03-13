@@ -149,3 +149,111 @@ cat = "dowla"
 The `"piki"` object is **not modified**.
 The variable simply **points to a new object**.
 
+
+
+Hami, your understanding is **mostly correct**, but there are a few **technical inaccuracies and English issues**. I edited your README to keep it **short, clear, and technically precise**, while preserving your original idea.
+
+I also corrected one important misunderstanding about memory.
+
+
+# Mutability in Python
+
+Some data types are **immutable** (such as `int`, `str`, and `bool`).  
+This means their objects **cannot be modified after creation**.  
+Instead, when we try to change them, Python **creates a new object**.
+
+Example:
+
+```python
+>>> a = "foo"
+>>> id(a)
+127229567618912
+
+>>> a = "foo" + "apple"
+>>> a
+'fooapple'
+
+>>> id(a)
+127229567613680
+````
+
+As we can see, the `id` values are different.
+This means Python created a **new object**. This happens because **strings are immutable**.
+
+Note: In the images, objects are represented with double borders.
+
+[https://www.teach.cs.toronto.edu/~csc148h/notes/_images/Immutable-type-crop.jpg](https://www.teach.cs.toronto.edu/~csc148h/notes/_images/Immutable-type-crop.jpg)
+
+---
+
+# Mutable Objects
+
+Mutable types include **list, dict, set, and class instances**.
+Mutable objects **can change their internal state without creating a new object**.
+
+Example with immutable type:
+
+```python
+a = 10
+a = 10 + 23
+```
+
+Here `10` is an immutable integer.
+The operation creates a **new object (33)** and `a` now refers to that new object.
+
+---
+
+Example with a mutable type:
+
+```python
+>>> lst = [1, 3, 4, 2]
+>>> id(lst)
+127229586524992
+
+>>> lst[0] = 43000
+>>> lst
+[43000, 3, 4, 2]
+
+>>> id(lst)
+127229586524992
+```
+
+The `id` of `lst` is the same before and after the modification.
+This means the **list object itself did not change**.
+
+However, the element inside the list changed.
+
+---
+
+Example showing this clearly:
+
+```python
+>>> lst = [1, 2, 3, 4]
+
+>>> id(lst[0])
+11755688
+
+>>> id(lst)
+140716187011904
+
+>>> lst[0] = 43000
+
+>>> id(lst[0])
+140716167968944
+
+>>> id(lst)
+140716187011904
+```
+
+Here we can see:
+
+* The `list` object keeps the **same id**.
+* The integer at index `0` changed from `1` to `43000`.
+* Since integers are **immutable**, Python created a **new integer object**.
+
+Each index in a list **stores a reference to an object**.
+When we assign a new value (`43000`), Python creates a new integer object and updates the reference at that index.
+
+The **list object itself remains the same**, but the **reference stored in the index changes**.
+
+
