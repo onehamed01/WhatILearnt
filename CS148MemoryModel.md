@@ -142,18 +142,18 @@ When a change appears to occur, Python actually **creates a new object**.
 Example:
 
 ```python
-a = "foo"
-print(id(a))
+prof = "Daniel"
+print(id(prof))
 
-a = "foo" + "apple"
-print(a)
-print(id(a))
+prof = "Daniel" + "Hardison"
+print(prof)
+print(id(prof))
 ```
 
 Example result:
 
 ```
-fooapple
+DanielHardison
 ```
 
 The `id` values are different, which means Python created a **new object**.
